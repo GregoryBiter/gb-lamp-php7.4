@@ -9,7 +9,7 @@ services:
             - ./www:/var/www/html
             - ./configs/php/php.ini:/usr/local/etc/php/php.ini
             - ./configs/apache/vhost.conf:/etc/apache2/sites-available.vhost.conf
-            - ./configs/php/mods/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./configs/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
             - ./logs/apache2:/var/log/apache2
             - ./logs/php:/var/log/php
         environment:
