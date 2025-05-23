@@ -34,8 +34,8 @@ RUN docker-php-ext-configure gd \
 # Установка ZIP без конфигурации
 RUN docker-php-ext-install zip
 
-# Активация mod_rewrite для Apache
-RUN a2enmod rewrite
+# Активация mod_rewrite и других необходимых модулей для Apache
+RUN a2enmod rewrite expires headers
 
 # Установка Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

@@ -21,18 +21,18 @@ services:
         env_file:
             - ./.env
     db:
-        image: mysql:5.7
+        image: mariadb:10.5
         restart: unless-stopped
         ports:
-            - "3306:3306"
+            - "${MYSQL_PORT:-3306}:3306"
         environment:
-            MYSQL_DATABASE: ${MYSQL_DATABASE:-opencart}
-            MYSQL_USER: ${MYSQL_USER:-opencart}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-opencart}
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+            MARIADB_DATABASE: ${MYSQL_DATABASE:-opencart}
+            MARIADB_USER: ${MYSQL_USER:-opencart}
+            MARIADB_PASSWORD: ${MYSQL_PASSWORD:-opencart}
+            MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
         volumes:
-          - ./mysql_data:/var/lib/mysql
-          - ./.dockerfile/images/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./.tmpDocker/mysql_data:/var/lib/mysql
+            - ./configs/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         restart: unless-stopped
@@ -44,7 +44,6 @@ services:
             MYSQL_INIDB_SKIP_TZINFO: "yes"
             UPLOAD_LIMIT: 100000000
 volumes:
-  mysql_data:
   logs:
 
 
