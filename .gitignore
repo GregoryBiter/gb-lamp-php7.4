@@ -1,5 +1,5 @@
 logs/apache2/*
 logs/php/*
 www/*
-mysql_data/*
 .tmpDocker/
+.env
