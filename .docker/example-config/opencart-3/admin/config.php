@@ -1,7 +1,7 @@
 <?php
 // HTTP
 define('HTTP_SERVER', $_ENV['OC_URL'] . '/admin/');
-define('HTTP_CATALOG', $_ENV['VHOST_SERVER_NAME'] . '/');
+define('HTTP_CATALOG', $_ENV['OC_URL'] . '/');
 
 // HTTPS
 define('HTTPS_SERVER', $_ENV['OC_URL'] . '/admin/');
