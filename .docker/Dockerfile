@@ -41,7 +41,7 @@ RUN a2enmod rewrite expires headers
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Добавление конфигурационных файлов
-ADD configs/php/php.ini /usr/local/etc/php/conf.d/40-custom.ini
+ADD .docker/configs/php/php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
 # Настройка прав доступа для запуска Apache от непривилегированного пользователя
 RUN sed -i 's/^export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=1000/' /etc/apache2/envvars \
