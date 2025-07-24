@@ -1,0 +1,5 @@
+Cannot load Zend OPcache - it was already loaded
+Cannot load Xdebug - it was already loaded
+[Mon Jul 21 22:33:23.689570 2025] [mpm_prefork:notice] [pid 1:tid 1] AH00163: Apache/2.4.62 (Debian) OpenSSL/3.0.16 configured -- resuming normal operations
+[Mon Jul 21 22:33:23.689626 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 22 00:28:48.128947 2025] [mpm_prefork:notice] [pid 1:tid 1] AH00170: caught SIGWINCH, shutting down gracefully

@@ -1,0 +1,1 @@
+[Mon Jul 21 22:33:39.039731 2025] [php:error] [pid 18:tid 18] [client 172.20.0.1:42136] script '/var/www/html/index.php' not found or unable to stat

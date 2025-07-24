@@ -7,13 +7,18 @@ services:
             - "${SERVER_PORT:-80}:80"
         volumes:
             - ./www/:/var/www/html
-            - ./.docker/configs/php/php.ini:/usr/local/etc/php/php.ini
-            - ./.docker/configs/apache/vhost.conf:/etc/apache2/sites-available/000-default.conf
-            - ./.docker/configs/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./.docker/configs/php/php.ini:/usr/local/etc/php/conf.d/99-custom.ini:ro
+            - ./.docker/configs/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini:ro
+            - ./.docker/configs/apache/vhost.conf:/etc/apache2/sites-available/000-default.conf:ro
+            - ./.docker/configs/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
             - ./.docker/logs/apache2:/var/log/apache2
             - ./.docker/logs/php:/var/log/php
         environment:
             PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=exemple.site}
+            VHOST_SERVER_NAME: ${VHOST_SERVER_NAME:-localhost}
+            VHOST_SERVER_ALIAS: ${VHOST_SERVER_ALIAS:-www.localhost}
+            VHOST_DOCUMENT_ROOT: ${VHOST_DOCUMENT_ROOT:-/var/www/html}
+            APACHE_LOG_DIR: /var/log/apache2
         restart: always
         user: "${UID:-1000}:${GID:-1000}"
         extra_hosts:
