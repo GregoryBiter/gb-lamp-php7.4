@@ -1,5 +1,4 @@
-logs/apache2/*
-logs/php/*
+.docker/logs/apache2/*
+.docker/logs/php/*
 www/*
-.tmpDocker/
 .env
