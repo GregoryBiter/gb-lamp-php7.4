@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.2-apache
 
 # Установка необходимых зависимостей и PHP расширений
 RUN apt-get update && apt-get install -y \
@@ -15,13 +15,13 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql \
     && pecl channel-update pecl.php.net \
-    && pecl install xdebug-2.9.8 \
+    && pecl install xdebug-3.2.2 \
     && docker-php-ext-enable xdebug
 
 RUN curl -o /tmp/ioncube_loaders.tar.gz https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz \
     && tar -xzf /tmp/ioncube_loaders.tar.gz -C /tmp \
-    && mv /tmp/ioncube/ioncube_loader_lin_7.4.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902/ \
-    && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/ioncube_loader_lin_7.4.so" > /usr/local/etc/php/conf.d/00-ioncube.ini \
+    && mv /tmp/ioncube/ioncube_loader_lin_8.2.so /usr/local/lib/php/extensions/no-debug-non-zts-20220829/ \
+    && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20220829/ioncube_loader_lin_8.2.so" > /usr/local/etc/php/conf.d/00-ioncube.ini \
     && rm -rf /tmp/ioncube*
 
 # Конфигурация и установка GD

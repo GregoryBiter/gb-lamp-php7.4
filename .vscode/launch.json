@@ -14,6 +14,17 @@
               },
             "log": true,
             // "hostname": "localhost",
-        }
+        },
+        {
+            "name": "GB LAMP - XDebag (/)",
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+            "pathMappings": {
+                "/var/www/html": "${workspaceRoot}/www"
+              },
+            "log": true,
+            // "hostname": "localhost",
+        },
     ]
 }

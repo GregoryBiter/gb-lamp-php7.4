@@ -1,0 +1,49 @@
+services:
+    php-apache:
+        build: 
+            context: .
+            dockerfile: ./.docker/templates/php8.0/Dockerfile
+        ports:
+            - "${SERVER_PORT:-80}:80"
+        volumes:
+            - ./www/:/var/www/html
+            - ./.docker/configs/php/php8.0/php.ini:/usr/local/etc/php/php.ini
+            - ./.docker/configs/apache/vhost.conf:/etc/apache2/sites-available/000-default.conf
+            - ./.docker/configs/php/php8.0/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./.docker/logs/apache2:/var/log/apache2
+            - ./.docker/logs/php:/var/log/php
+        environment:
+            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=exemple.site}
+        restart: always
+        user: "${UID:-1000}:${GID:-1000}"
+        extra_hosts:
+            -  "host.docker.internal:host-gateway"
+        env_file:
+            - ./.env
+    db:
+        image: mariadb:10.5
+        restart: unless-stopped
+        ports:
+            - "${MYSQL_PORT:-3306}:3306"
+        environment:
+            MARIADB_DATABASE: ${MYSQL_DATABASE:-opencart}
+            MARIADB_USER: ${MYSQL_USER:-opencart}
+            MARIADB_PASSWORD: ${MYSQL_PASSWORD:-opencart}
+            MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+        volumes:
+            - mysql_data:/var/lib/mysql
+            - ./.docker/configs/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: unless-stopped
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: db
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+            MYSQL_INIDB_SKIP_TZINFO: "yes"
+            UPLOAD_LIMIT: 900000000
+volumes:
+  logs:
+  mysql_data:
+    driver: local
