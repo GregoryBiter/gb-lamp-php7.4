@@ -1,5 +1,5 @@
-./docker/logs/apache2/*
-./docker/logs/php/*
+/.docker/logs/apache2/*
+/.docker/logs/php/*
 www/*
 docker-compose.yml
 .tmpDocker/
