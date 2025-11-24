@@ -78,15 +78,12 @@ if [ ! -f ".env" ]; then
     fi
 fi
 
+docker compose down
+docker compose build
+
 echo ""
 echo -e "${BLUE}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║   Инициализация завершена успешно!               ║${NC}"
 echo -e "${BLUE}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "${GREEN}Выбранная конфигурация: $PHP_VERSION${NC}"
-echo ""
-echo -e "${YELLOW}Следующие шаги:${NC}"
-echo "1. Проверьте настройки в файле .env"
-echo "2. Запустите проект командой: ${GREEN}make start${NC} или ${GREEN}make up${NC}"
-echo "3. Добавьте доменное имя в /etc/hosts, если необходимо"
-echo ""
