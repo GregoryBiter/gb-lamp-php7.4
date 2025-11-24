@@ -3,6 +3,7 @@ services:
         build: 
             context: .
             dockerfile: ./.docker/templates/php7.4/Dockerfile
+        image: gb-lamp:php7.4
         ports:
             - "${SERVER_PORT:-80}:80"
         volumes:
