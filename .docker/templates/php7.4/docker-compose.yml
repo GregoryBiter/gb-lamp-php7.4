@@ -14,7 +14,6 @@ services:
             - ./.docker/logs/php:/var/log/php
         environment:
             PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=exemple.site}
-        restart: always
         user: "${UID:-1000}:${GID:-1000}"
         extra_hosts:
             -  "host.docker.internal:host-gateway"
@@ -22,7 +21,6 @@ services:
             - ./.env
     db:
         image: mariadb:10.5
-        restart: unless-stopped
         ports:
             - "${MYSQL_PORT:-3306}:3306"
         environment:
@@ -35,7 +33,6 @@ services:
             - ./.docker/configs/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        restart: unless-stopped
         ports:
             - "8080:80"
         environment:
