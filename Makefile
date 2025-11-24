@@ -6,7 +6,7 @@ help: ## Показать эту справку
 init: ## Инициализировать проект с выбором версии PHP (7.4, 8.0, 8.2)
 	./.docker/scripts/init.sh
 
-setup: ## Настроить права доступа к файлам (www)
+fix-permissions: ## Настроить права доступа к файлам (www)
 	./.docker/scripts/fixPermissions.sh
 
 start: ## Запустить проект (проверить .env, добавить хост, запустить Docker)
@@ -16,7 +16,7 @@ ngrok: ## Запустить ngrok для туннелирования
 	./.docker/scripts/start-ngrok.sh
 
 up: ## Запустить Docker Compose в фоне
-	docker compose up -d
+	./.docker/scripts/run.sh
 
 down: ## Остановить Docker Compose
 	docker compose down
