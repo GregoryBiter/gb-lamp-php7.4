@@ -1,6 +1,7 @@
 /.docker/logs/apache2/*
 /.docker/logs/php/*
-www/*
+/www/*
+!/www/index.html
 docker-compose.yml
 .tmpDocker/
 .env
